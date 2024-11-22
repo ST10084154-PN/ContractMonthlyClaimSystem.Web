@@ -1,0 +1,40 @@
+﻿@model ContractMonthlyClaimSystem.Web.Models.Claim
+
+<h2>Submit Claim</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="LecturerName">Lecturer Name</label>
+        <input type="text" class="form-control" asp-for="LecturerName" />
+        <span asp-validation-for="LecturerName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="HoursWorked">Hours Worked</label>
+        <input type="number" class="form-control" asp-for="HoursWorked" id="HoursWorked" />
+        <span asp-validation-for="HoursWorked" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="HourlyRate">Hourly Rate</label>
+        <input type="number" class="form-control" asp-for="HourlyRate" id="HourlyRate" />
+        <span asp-validation-for="HourlyRate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Total Amount</label>
+        <input type="text" class="form-control" id="TotalAmount" readonly />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#HoursWorked, #HourlyRate").on("input", function () {
+                const hoursWorked = parseFloat($("#HoursWorked").val()) || 0;
+                const hourlyRate = parseFloat($("#HourlyRate").val()) || 0;
+                const totalAmount = hoursWorked * hourlyRate;
+                $("#TotalAmount").val(totalAmount.toFixed(2));
+            });
+        });
+    </script>
+}

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ContractMonthlyClaimSystem.Web.Models.Claim>
+
+<h2>Submitted Claims</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Lecturer Name</th>
+            <th>Hours Worked</th>
+            <th>Hourly Rate</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.LecturerName</td>
+                <td>@claim.HoursWorked</td>
+                <td>@claim.HourlyRate</td>
+                <td>@claim.TotalAmount</td>
+                <td>@claim.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
